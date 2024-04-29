@@ -1,0 +1,77 @@
+<!-- locations/templates/locations/display_addresses.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Canadian Addresses</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #abcdef;
+        color: #fefefe;
+        padding: 20px;
+      }
+      table {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #dee2e6;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mb-4">Locations (Using Join)</h1>
+      <table class="table table-bordered">
+        <tr>
+          <th>Location ID</th>
+          <th>Street Address</th>
+          <th>Postal Code</th>
+          <th>City</th>
+          <th>State/Province</th>
+          <th>Country Id</th>
+        </tr>
+        {% for address in addresses_with_join %}
+        <tr>
+          <td>{{ address.location_id }}</td>
+          <td>{{ address.street_address }}</td>
+          <td>{{ address.postal_code }}</td>
+          <td>{{ address.city }}</td>
+          <td>{{ address.state_province }}</td>
+          <td>{{ address.country__country_id }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="container">
+      <h1 class="mb-4">Countries (No Join)</h1>
+      <table class="table table-bordered">
+        <tr>
+          <th>Country ID</th>
+          <th>Country Name</th>
+          <th>Region Id</th>
+        </tr>
+        {% for address in addresses_no_join %}
+        <tr>
+          <td>{{ address.country_id }}</td>
+          <td>{{ address.country_name }}</td>
+          <td>{{ address.region_id }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
